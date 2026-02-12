@@ -1,0 +1,906 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Magic Cactus — 2025 Shareholder Update</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #F7E8DF;
+    --cream-light: #FDF8F4;
+    --sage: #657937;
+    --sage-light: #7A9248;
+    --sage-muted: #8FA06A;
+    --gold: #C1986C;
+    --gold-light: #D4AD84;
+    --black: #221F1F;
+    --gray: #6B6563;
+    --gray-light: #A09895;
+    --border: #E8DDD5;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', -apple-system, sans-serif;
+    background: #FDFBF9;
+    color: var(--black);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container { max-width: 680px; margin: 0 auto; padding: 0 24px; }
+
+  /* Header */
+  .header {
+    text-align: center; padding: 60px 0 40px;
+    border-bottom: 1px solid var(--border); margin-bottom: 48px;
+  }
+  .header-brand {
+    font-family: 'DM Serif Display', serif; font-size: 28px;
+    color: var(--sage); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px;
+  }
+  .header-subtitle { font-size: 15px; color: var(--gold); font-weight: 500; letter-spacing: 1px; }
+  .header-date { font-size: 13px; color: var(--gray-light); margin-top: 16px; }
+
+  /* Sections */
+  .section { margin-bottom: 48px; }
+  .section-label {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 2.5px; color: var(--gold); margin-bottom: 8px;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 26px; color: var(--black); margin-bottom: 20px; line-height: 1.3;
+  }
+  .section-divider { width: 40px; height: 2px; background: var(--gold); margin: 48px 0; }
+
+  /* Text */
+  p { font-size: 15.5px; color: #3D3836; margin-bottom: 18px; line-height: 1.75; }
+  p strong { color: var(--black); font-weight: 600; }
+
+  /* Hero Banner */
+  .hero-banner {
+    background: linear-gradient(135deg, #2C3A1E 0%, #3D5228 40%, #4A6230 100%);
+    border-radius: 16px; padding: 48px 40px; text-align: center;
+    margin: 32px 0; position: relative; overflow: hidden;
+  }
+  .hero-banner::before {
+    content: ''; position: absolute; top: -50%; right: -20%;
+    width: 300px; height: 300px;
+    background: radial-gradient(circle, rgba(193,152,108,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+  }
+  .hero-eyebrow {
+    font-size: 12px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 3px; color: var(--gold-light); margin-bottom: 12px;
+    position: relative; z-index: 1;
+  }
+  .hero-number {
+    font-family: 'DM Serif Display', serif; font-size: 64px;
+    color: #F7E8DF; line-height: 1; margin-bottom: 8px;
+    position: relative; z-index: 1;
+  }
+  .hero-context {
+    font-size: 16px; color: rgba(247,232,223,0.7);
+    position: relative; z-index: 1;
+  }
+  .hero-sub-metrics {
+    display: flex; justify-content: center; gap: 48px; margin-top: 32px;
+    padding-top: 28px; border-top: 1px solid rgba(247,232,223,0.15);
+    position: relative; z-index: 1;
+  }
+  .hero-sub-metric { text-align: center; }
+  .hero-sub-value { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--gold-light); }
+  .hero-sub-label {
+    font-size: 11px; color: rgba(247,232,223,0.55);
+    text-transform: uppercase; letter-spacing: 1.5px; margin-top: 4px;
+  }
+
+  /* Metric Cards */
+  .metric-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+  .metric-grid.three-col { grid-template-columns: 1fr 1fr 1fr; }
+  .metric-card {
+    background: var(--cream-light); border: 1px solid var(--border);
+    border-radius: 12px; padding: 24px; text-align: center;
+  }
+  .metric-card.full { grid-column: 1 / -1; }
+  .metric-value { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--sage); line-height: 1.1; }
+  .metric-value.gold { color: var(--gold); }
+  .metric-value.sm { font-size: 28px; }
+  .metric-label {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--gray-light); margin-top: 8px;
+  }
+  .metric-sub { font-size: 12px; color: var(--sage-muted); font-weight: 600; margin-top: 4px; }
+
+  /* Charts */
+  .chart-wrapper {
+    background: white; border: 1px solid var(--border); border-radius: 12px;
+    padding: 24px 20px 16px; margin: 16px 0;
+  }
+  .chart-title { font-weight: 600; font-size: 14px; color: var(--black); margin-bottom: 4px; }
+  .chart-subtitle { font-size: 12px; color: var(--gray-light); margin-bottom: 16px; }
+  .chart-container { position: relative; }
+
+  /* Year Table */
+  .year-table { width: 100%; border-collapse: collapse; margin: 16px 0 24px; }
+  .year-table th {
+    font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px;
+    color: var(--gray-light); font-weight: 600; text-align: left;
+    padding: 12px 0; border-bottom: 1px solid var(--border);
+  }
+  .year-table th:not(:first-child) { text-align: right; }
+  .year-table td { padding: 14px 0; font-size: 15px; border-bottom: 1px solid #F0EBE6; }
+  .year-table td:not(:first-child) { text-align: right; }
+  .year-table td strong { font-weight: 700; }
+  .year-table .growth { color: var(--sage); font-weight: 700; }
+
+  /* Timeline */
+  .timeline { margin: 24px 0; padding-left: 24px; border-left: 2px solid var(--border); }
+  .timeline-item { position: relative; padding: 0 0 24px 24px; }
+  .timeline-item:last-child { padding-bottom: 0; }
+  .timeline-item::before {
+    content: ''; position: absolute; left: -29px; top: 6px;
+    width: 10px; height: 10px; border-radius: 50%;
+    background: var(--gold); border: 2px solid #FDFBF9;
+  }
+  .timeline-item.highlight::before {
+    background: var(--sage); width: 12px; height: 12px; left: -30px;
+  }
+  .timeline-period {
+    font-size: 12px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 1.5px; color: var(--sage); margin-bottom: 4px;
+  }
+  .timeline-text { font-size: 14px; color: #3D3836; line-height: 1.6; }
+
+  /* Bullets */
+  .bullet-list { list-style: none; padding: 0; margin: 0 0 24px; }
+  .bullet-list li {
+    font-size: 15px; color: #3D3836; line-height: 1.7; padding: 8px 0 8px 20px;
+    position: relative;
+  }
+  .bullet-list li::before {
+    content: ''; position: absolute; left: 0; top: 16px;
+    width: 6px; height: 6px; border-radius: 50%; background: var(--gold);
+  }
+
+  /* January Banner */
+  .jan-banner {
+    background: var(--cream); border: 1px solid var(--border);
+    border-radius: 16px; padding: 40px; text-align: center; margin: 24px 0;
+  }
+  .jan-eyebrow {
+    font-size: 11px; font-weight: 700; text-transform: uppercase;
+    letter-spacing: 2.5px; color: var(--sage); margin-bottom: 8px;
+  }
+  .jan-number {
+    font-family: 'DM Serif Display', serif; font-size: 52px; color: var(--sage);
+    line-height: 1; margin-bottom: 8px;
+  }
+  .jan-context { font-size: 15px; color: var(--gold); }
+
+  /* Summary Table */
+  .summary-table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+  .summary-table td { padding: 14px 0; font-size: 14px; border-bottom: 1px solid #F0EBE6; }
+  .summary-table td:first-child { color: var(--gray); }
+  .summary-table td:nth-child(2) { text-align: right; font-weight: 700; color: var(--black); }
+  .summary-table td:nth-child(3) { text-align: right; color: var(--sage); font-weight: 600; font-size: 13px; width: 100px; }
+
+  /* Callout */
+  .callout {
+    background: var(--cream-light); border-left: 3px solid var(--sage);
+    padding: 20px 24px; border-radius: 0 8px 8px 0; margin: 24px 0;
+  }
+  .callout p { font-size: 14px; margin-bottom: 0; }
+
+  /* Signature */
+  .signature { margin-top: 48px; padding-top: 32px; border-top: 1px solid var(--border); }
+  .sig-name { font-family: 'DM Serif Display', serif; font-size: 18px; color: var(--black); }
+  .sig-title { font-size: 13px; color: var(--gray); margin-top: 2px; }
+
+  /* Footer */
+  .footer {
+    text-align: center; padding: 40px 0; margin-top: 48px;
+    border-top: 1px solid var(--border);
+  }
+  .footer p { font-size: 12px; color: var(--gray-light); margin-bottom: 4px; }
+
+  /* Mobile */
+  @media (max-width: 480px) {
+    .hero-banner { padding: 32px 20px; }
+    .hero-number { font-size: 44px; }
+    .hero-context { font-size: 14px; }
+    .hero-sub-metrics { flex-direction: column; gap: 20px; }
+    .hero-sub-value { font-size: 22px; }
+    .metric-grid { grid-template-columns: 1fr; }
+    .metric-grid.three-col { grid-template-columns: 1fr; }
+    .section-title { font-size: 22px; }
+    .jan-number { font-size: 40px; }
+    .container { padding: 0 16px; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-brand">Magic Cactus</div>
+    <div class="header-subtitle">2025 Year in Review &amp; January 2026 Update</div>
+    <div class="header-date">Shareholder Update &middot; February 2026</div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="section">
+    <p>Hey everyone,</p>
+    <p>Excited to share our annual update covering all of 2025 and a very big January. I'll keep it tight and let the numbers do the talking.</p>
+    <p><strong>The short version: we more than doubled the business, our customers kept coming back, and January just delivered our biggest month in company history — by a wide margin.</strong></p>
+  </div>
+
+  <!-- HERO BANNER -->
+  <div class="hero-banner">
+    <div class="hero-eyebrow">2025 Total Revenue</div>
+    <div class="hero-number">$2.75M</div>
+    <div class="hero-context">+153% year-over-year &middot; up from $1.09M in 2024</div>
+    <div class="hero-sub-metrics">
+      <div class="hero-sub-metric">
+        <div class="hero-sub-value">$2.36M</div>
+        <div class="hero-sub-label">DTC Revenue</div>
+      </div>
+      <div class="hero-sub-metric">
+        <div class="hero-sub-value">$396K</div>
+        <div class="hero-sub-label">Wholesale</div>
+      </div>
+      <div class="hero-sub-metric">
+        <div class="hero-sub-value">+227%</div>
+        <div class="hero-sub-label">WS Growth</div>
+      </div>
+    </div>
+  </div>
+
+  <p>Second consecutive year of triple-digit growth. By June, we surpassed our entire 2024 annual revenue. Eleven of twelve months exceeded our single best month from the prior year.</p>
+
+  <div class="section-divider"></div>
+
+  <!-- REVENUE TRAJECTORY -->
+  <div class="section">
+    <div class="section-label">Growth</div>
+    <div class="section-title">Revenue Trajectory</div>
+
+    <div class="chart-wrapper">
+      <div class="chart-title">Annual Revenue</div>
+      <div class="chart-subtitle">Three consecutive years of triple-digit growth</div>
+      <div class="chart-container" style="height: 240px;">
+        <canvas id="chartAnnual"></canvas>
+      </div>
+    </div>
+
+    <table class="year-table">
+      <tr><th>Year</th><th>Revenue</th><th>YoY</th></tr>
+      <tr><td>2023</td><td><strong>$19,540</strong></td><td class="growth">—</td></tr>
+      <tr><td>2024</td><td><strong>$1,089,930</strong></td><td class="growth">+5,478%</td></tr>
+      <tr><td>2025</td><td><strong>$2,752,216</strong></td><td class="growth">+153%</td></tr>
+    </table>
+
+    <div class="chart-wrapper">
+      <div class="chart-title">Monthly Revenue: 2025 vs. 2024</div>
+      <div class="chart-subtitle">Every month outperformed prior year · January 2026 is the biggest month in company history</div>
+      <div class="chart-container" style="height: 280px;">
+        <canvas id="chartMonthly"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- QUARTERLY -->
+  <div class="section">
+    <div class="section-label">Quarterly</div>
+    <div class="section-title">2025 by the Quarter</div>
+
+    <div class="chart-wrapper">
+      <div class="chart-title">Quarterly Revenue &amp; Channel Mix</div>
+      <div class="chart-subtitle">DTC + Wholesale by quarter</div>
+      <div class="chart-container" style="height: 240px;">
+        <canvas id="chartQuarterly"></canvas>
+      </div>
+    </div>
+
+    <p>Q3 was our strongest quarter at $788K. Q4 dipped slightly — seasonal DTC softness plus a deliberate pullback on paid acquisition as we optimized our channel mix heading into 2026. Still +78% YoY.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- CUSTOMERS -->
+  <div class="section">
+    <div class="section-label">Customers</div>
+    <div class="section-title">The Retention Story</div>
+
+    <p>Revenue growth is one thing — customer quality is another. This is what we're most proud of.</p>
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-value">17,454</div>
+        <div class="metric-label">Lifetime Customers</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value gold">31%</div>
+        <div class="metric-label">Repeat Purchase Rate</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value">65%</div>
+        <div class="metric-label">DTC Rev from Repeat Buyers</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value gold">$99</div>
+        <div class="metric-label">Average Order Value</div>
+      </div>
+    </div>
+
+    <p><strong>Nearly two-thirds of every DTC dollar came from someone who already tried us and came back.</strong> A $99 AOV in beverage DTC — where $40–60 is typical — reflects a customer buying cases, not single cans.</p>
+
+    <div class="chart-wrapper">
+      <div class="chart-title">New vs. Returning Customer Revenue</div>
+      <div class="chart-subtitle">Returning revenue held above $150K for seven straight months (Jul–Jan)</div>
+      <div class="chart-container" style="height: 260px;">
+        <canvas id="chartNewReturn"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- COHORT ANALYSIS -->
+  <div class="section">
+    <div class="section-label">Cohort Analysis</div>
+    <div class="section-title">Where Revenue Actually Comes From</div>
+
+    <p>We ran a full cohort analysis across all 17,454 customers and 39,000+ orders. Two things jumped out.</p>
+
+    <p><strong>First: our power users drive the business.</strong> Just 2.4% of customers (421 people with 13+ orders) generate over half of all lifetime revenue. These are our subscribers and superfans — the clearest proof that the product creates genuine habitual behavior.</p>
+
+    <div class="chart-wrapper">
+      <div class="chart-title">Revenue by Customer Tier</div>
+      <div class="chart-subtitle">2.4% of customers drive 51% of revenue</div>
+      <div class="chart-container" style="height: 280px;">
+        <canvas id="chartTiers"></canvas>
+      </div>
+    </div>
+
+    <p><strong>Second: repeat customers come back fast.</strong> Median time to second purchase is just 32 days. 44% of all repeat customers reorder within 30 days. Over 70% come back within 60 days.</p>
+
+    <div class="chart-wrapper">
+      <div class="chart-title">Time to Second Purchase</div>
+      <div class="chart-subtitle">44% reorder within 30 days · 71% within 60 days</div>
+      <div class="chart-container" style="height: 260px;">
+        <canvas id="chartTime2nd"></canvas>
+      </div>
+    </div>
+
+    <div class="callout">
+      <p><strong>Why this matters:</strong> A tight reorder window means our retention interventions (email flows, subscription nudges, reorder reminders) hit during peak intent. Every improvement in 30-day conversion compounds across the entire customer base.</p>
+    </div>
+
+    <p>Early 2025 cohorts are already showing $218–$275 in lifetime value per customer with months of maturity ahead. Our top 10% of customers drive 50% of all revenue — healthy concentration that reflects genuine product love, not promotional dependency.</p>
+
+    <div class="chart-wrapper">
+      <div class="chart-title">Cohort LTV by Acquisition Month</div>
+      <div class="chart-subtitle">2025 cohorts · Revenue per customer through Jan 2026 (darker = more mature)</div>
+      <div class="chart-container" style="height: 240px;">
+        <canvas id="chartLTV"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- SUBSCRIPTIONS -->
+  <div class="section">
+    <div class="section-label">Subscriptions</div>
+    <div class="section-title">A Quietly Powerful Engine</div>
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-value sm">$922K</div>
+        <div class="metric-label">Subscription Revenue</div>
+        <div class="metric-sub">37% of DTC</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value sm gold">993</div>
+        <div class="metric-label">Active Subscribers (Dec)</div>
+        <div class="metric-sub">+74% from Jan</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value sm">9.8%</div>
+        <div class="metric-label">Monthly Churn (Dec)</div>
+        <div class="metric-sub">Down from 14.4%</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value sm gold">4.8</div>
+        <div class="metric-label">Avg Cycles Before Cancel</div>
+        <div class="metric-sub">Up from 2.6</div>
+      </div>
+    </div>
+
+    <div class="chart-wrapper">
+      <div class="chart-title">Subscriber Growth &amp; Churn Rate</div>
+      <div class="chart-subtitle">Crossed 1,000 active subscribers in January 2026</div>
+      <div class="chart-container" style="height: 260px;">
+        <canvas id="chartSubs"></canvas>
+      </div>
+    </div>
+
+    <p><strong>Average subscription cycles before cancellation nearly doubled — 2.6 orders in January to 4.8 by December.</strong> Subscribers are sticking around almost twice as long. Recurring subscription revenue (existing subscribers reordering monthly) totaled $768K — predictable, zero-acquisition-cost revenue.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- OWNED CHANNELS -->
+  <div class="section">
+    <div class="section-label">Owned Channels</div>
+    <div class="section-title">$799K Without Ad Spend</div>
+
+    <p>Email and SMS drove <strong>$799K in DTC revenue — 32% of total DTC.</strong> Zero marginal cost.</p>
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-value sm">$707K</div>
+        <div class="metric-label">Automated Flow Revenue</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value sm gold">$92K</div>
+        <div class="metric-label">Campaign Revenue</div>
+      </div>
+    </div>
+
+    <p>As our email list and subscriber base grow, this channel scales with it.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- PAID MEDIA -->
+  <div class="section">
+    <div class="section-label">Acquisition</div>
+    <div class="section-title">Paid Media</div>
+
+    <p>$857K total ad spend across Meta and Google. 10,220 new DTC customers. Blended nCAC of $84.</p>
+
+    <div class="chart-wrapper">
+      <div class="chart-title">New Customer Acquisition Cost (nCAC)</div>
+      <div class="chart-subtitle">H1 avg: $60 · H2 avg: $116</div>
+      <div class="chart-container" style="height: 220px;">
+        <canvas id="chartNCAC"></canvas>
+      </div>
+    </div>
+
+    <p>H1 was efficient ($60 avg nCAC). H2 costs rose as we scaled Meta and hit diminishing returns. A few things happened in response:</p>
+
+    <ul class="bullet-list">
+      <li><strong>Pulled back Meta spend in Q4</strong> — from $99K/month (Sep) to $9K (Dec) — while testing new creative and audiences</li>
+      <li><strong>Starting October, a portion of Meta spend shifted to driving retail traffic</strong> at key wholesale accounts (Total Wine, Lowes Foods, etc.) — so the dip in DTC efficiency is partly by design</li>
+      <li><strong>Google was consistent all year</strong> — 5.2x average ROAS from February onward, delivering customers at a fraction of Meta's cost</li>
+    </ul>
+
+    <p>As wholesale scales, company-wide acquisition economics improve structurally — more on that below.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- WHOLESALE -->
+  <div class="section">
+    <div class="section-label">Distribution</div>
+    <div class="section-title">Wholesale — The Chapter That's Just Beginning</div>
+
+    <p><strong>$396K in 2025 wholesale revenue, +227% YoY.</strong> The full-year number undersells the trajectory.</p>
+
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-period">Q4 2024</div>
+        <div class="timeline-text">Launched DTC first — building direct relationships with end consumers before entering retail.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">Q1 2025</div>
+        <div class="timeline-text">Beta-tested retail via Airgoods and self-distribution. <strong>All SKUs ranked #1 and #2 on Airgoods platform-wide, across all categories.</strong> Launched into Total Wine across all Arizona locations.</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">April 2025</div>
+        <div class="timeline-text">Arizona banned hemp-derived THC beverages. Lost our earliest wholesale market. Pivoted — signed DSD partners in TN (Empire), NC (Tryon), FL (Cavalier), and TX (Dynamo).</div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-period">Q4 2025</div>
+        <div class="timeline-text">Launched DSD in Tennessee and North Carolina. Chain placements in Total Wine, Lowes Foods, and The Fresh Market.</div>
+      </div>
+      <div class="timeline-item highlight">
+        <div class="timeline-period">January 2026 — Sprouts Farmers Market</div>
+        <div class="timeline-text"><strong>Launched into 120 Sprouts locations across Texas and Florida</strong> — one of just 7 THC beverage brands selected. The largest grocery launch of THC products to date. January wholesale: $135K — 34% of total 2025 wholesale, in one month.</div>
+      </div>
+    </div>
+
+    <div class="chart-wrapper">
+      <div class="chart-title">Wholesale Revenue by Month</div>
+      <div class="chart-subtitle">2025 was infrastructure. January 2026 was the payoff.</div>
+      <div class="chart-container" style="height: 260px;">
+        <canvas id="chartWholesale"></canvas>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- JANUARY 2026 -->
+  <div class="section">
+    <div class="section-label">Dry January</div>
+    <div class="section-title">January 2026 — Our Biggest Month Ever</div>
+
+    <div class="jan-banner">
+      <div class="jan-eyebrow">January 2026 Total Revenue</div>
+      <div class="jan-number">$429,027</div>
+      <div class="jan-context">+129% year-over-year &middot; $5.1M annualized run rate</div>
+    </div>
+
+    <div class="metric-grid">
+      <div class="metric-card">
+        <div class="metric-value sm">$294K</div>
+        <div class="metric-label">DTC Revenue</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value sm gold">$135K</div>
+        <div class="metric-label">Wholesale Revenue</div>
+        <div class="metric-sub">32% of total</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value sm">1,493</div>
+        <div class="metric-label">New Customers</div>
+        <div class="metric-sub">+139% YoY</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-value sm gold">1,051</div>
+        <div class="metric-label">Active Subscribers</div>
+        <div class="metric-sub">Crossed 1K</div>
+      </div>
+    </div>
+
+    <p>Dry January demand, the Sprouts launch, a scaled-up DTC push, and a growing subscriber base all converged. Company-wide MER was 24% — because wholesale revenue doesn't require ad spend to generate.</p>
+
+    <p><strong>That's the math that changes everything.</strong> As wholesale grows as a share of total revenue, blended acquisition economics improve structurally. January is the preview.</p>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- REFLECTIONS -->
+  <div class="section">
+    <div class="section-label">Reflections</div>
+    <div class="section-title">What 2025 Taught Us</div>
+
+    <ul class="bullet-list">
+      <li><strong>Retention is the moat.</strong> 65% repeat revenue, 31% lifetime repeat rate, 32-day median reorder cycle. The product does the selling.</li>
+      <li><strong>DTC alone won't get us to scale.</strong> Paid acquisition gets more expensive in a regulated category. Wholesale is the unlock — 2025 built the infrastructure.</li>
+      <li><strong>Subscription economics are improving structurally.</strong> Churn declining, cycle length doubling, subscriber count growing — all at once.</li>
+      <li><strong>Regulatory volatility is real, but we're built for it.</strong> Arizona's ban cost us our first market. Our low-dose formulation (2mg THC) survives where high-dose competitors get pushed out. Sprouts selecting us as 1 of 7 validates this.</li>
+    </ul>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- 2026 PRIORITIES -->
+  <div class="section">
+    <div class="section-label">Ahead</div>
+    <div class="section-title">2026 Priorities</div>
+
+    <ul class="bullet-list">
+      <li><strong>Go deeper in Texas and Florida.</strong> 120 Sprouts stores live. DSD partners in place to add retail doors beyond Sprouts.</li>
+      <li><strong>Continue building TN and NC.</strong> Total Wine, Lowes Foods, The Fresh Market are live. Expanding within chains and adding new ones.</li>
+      <li><strong>Optimize DTC acquisition.</strong> Rebalancing toward Google, scaling email/SMS, improving subscription conversion.</li>
+      <li><strong>Capital.</strong> We intend to make a fundraising opportunity available this year. If you're interested in participating or increasing your position, I'd welcome a conversation.</li>
+    </ul>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- SUMMARY TABLE -->
+  <div class="section">
+    <div class="section-label">Summary</div>
+    <div class="section-title">2025 at a Glance</div>
+
+    <table class="summary-table">
+      <tr><td>Total Revenue</td><td>$2,752,216</td><td>+153%</td></tr>
+      <tr><td>DTC Revenue</td><td>$2,356,192</td><td>+143%</td></tr>
+      <tr><td>Wholesale Revenue</td><td>$396,024</td><td>+227%</td></tr>
+      <tr><td>Lifetime Customers</td><td>17,454</td><td></td></tr>
+      <tr><td>Repeat Purchase Rate</td><td>31%</td><td></td></tr>
+      <tr><td>DTC from Repeat Buyers</td><td>65%</td><td></td></tr>
+      <tr><td>Average Order Value</td><td>$99</td><td></td></tr>
+      <tr><td>Subscription Revenue</td><td>$922K</td><td>37% of DTC</td></tr>
+      <tr><td>Active Subscribers (Dec)</td><td>993</td><td>+74%</td></tr>
+      <tr><td>Monthly Churn (Dec)</td><td>9.8%</td><td>from 14.4%</td></tr>
+      <tr><td>Email/SMS Revenue</td><td>$799K</td><td>32% of DTC</td></tr>
+      <tr><td>Ad Spend</td><td>$857K</td><td></td></tr>
+      <tr><td>New DTC Customers</td><td>10,220</td><td></td></tr>
+      <tr><td>Blended nCAC</td><td>$84</td><td></td></tr>
+      <tr><td>January 2026 Revenue</td><td>$429,027</td><td>+129%</td></tr>
+    </table>
+  </div>
+
+  <!-- CLOSING -->
+  <div class="section">
+    <p>Thanks for being part of this. 2025 was the year we proved the model. 2026 is the year we scale it.</p>
+    <p>Always available for questions, deeper dives, or conversations about what's next.</p>
+
+    <div class="signature">
+      <div class="sig-name">Jonny Locarni</div>
+      <div class="sig-title">Founder &amp; CEO, Magic Cactus</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p>CONFIDENTIAL</p>
+    <p>Magic Cactus &middot; Shareholder Update &middot; February 2026</p>
+  </div>
+
+</div>
+
+<!-- ═══════════════════════════════════════════════ -->
+<!-- ALL CHARTS — Chart.js -->
+<!-- ═══════════════════════════════════════════════ -->
+<script>
+Chart.defaults.font.family = "'DM Sans', sans-serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.color = '#6B6563';
+Chart.defaults.plugins.legend.display = false;
+
+const sage='#657937', sageMuted='#8FA06A', sagePale='#C5D4A0',
+      gold='#C1986C', goldLight='#D4AD84', goldPale='#E8D4BC',
+      grayPale='#EAE5E0', grayLight='#D4CEC8',
+      jan26='#4A6B2A';
+
+const mL = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+const mL13 = [...mL, 'Jan 26'];
+
+const gridOpts = { color: 'rgba(0,0,0,0.04)', drawBorder: false };
+const noGrid = { display: false };
+
+function dollarK(v) { return '$' + Math.round(v/1e3) + 'K'; }
+function dollarFlex(v) { return v >= 1e6 ? '$'+(v/1e6).toFixed(1)+'M' : v >= 1e3 ? '$'+Math.round(v/1e3)+'K' : '$'+v; }
+function pct(v) { return v + '%'; }
+
+// ─── 1. ANNUAL REVENUE ───
+new Chart(document.getElementById('chartAnnual'), {
+  type: 'bar',
+  data: {
+    labels: ['2023','2024','2025'],
+    datasets: [{
+      data: [19540, 1089930, 2752216],
+      backgroundColor: [grayPale, sageMuted, sage],
+      borderRadius: 8, borderSkipped: false, maxBarThickness: 100
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: {
+      y: { beginAtZero: true, grid: gridOpts, ticks: { callback: dollarFlex } },
+      x: { grid: noGrid, ticks: { font: { size: 14, weight: '600' } } }
+    },
+    plugins: {
+      tooltip: { callbacks: { label: ctx => dollarFlex(ctx.parsed.y) } }
+    }
+  }
+});
+
+// ─── 2. MONTHLY COMPARISON (with Jan 2026) ───
+new Chart(document.getElementById('chartMonthly'), {
+  type: 'bar',
+  data: {
+    labels: mL13,
+    datasets: [
+      { label: '2024 / Jan 2025', data: [13199,19825,10558,23403,49789,103248,127431,171544,165794,162130,131509,111500,187013], backgroundColor: grayLight, borderRadius: 4, maxBarThickness: 22 },
+      { label: '2025 / Jan 2026', data: [187013,145497,190967,195327,271292,253641,244795,261805,281387,269564,240745,210183,429027],
+        backgroundColor: [...Array(12).fill(sage), jan26], borderRadius: 4, maxBarThickness: 22 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: {
+      y: { beginAtZero: true, grid: gridOpts, ticks: { callback: dollarK } },
+      x: { grid: noGrid }
+    },
+    plugins: {
+      legend: { display: true, position: 'top', align: 'end', labels: { usePointStyle: true, pointStyle: 'rectRounded', padding: 18, font: { size: 11 } } }
+    }
+  }
+});
+
+// ─── 3. QUARTERLY MIX ───
+new Chart(document.getElementById('chartQuarterly'), {
+  type: 'bar',
+  data: {
+    labels: ['Q1 2025','Q2 2025','Q3 2025','Q4 2025'],
+    datasets: [
+      { label: 'DTC', data: [404747,626489,707571,617385], backgroundColor: sage, maxBarThickness: 70 },
+      { label: 'Wholesale', data: [118730,93771,80416,103107], backgroundColor: gold, borderRadius: { topLeft:6, topRight:6 }, maxBarThickness: 70 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: {
+      y: { stacked: true, beginAtZero: true, grid: gridOpts, ticks: { callback: dollarK } },
+      x: { stacked: true, grid: noGrid, ticks: { font: { size: 13, weight: '600' } } }
+    },
+    plugins: {
+      legend: { display: true, position: 'top', align: 'end', labels: { usePointStyle: true, pointStyle: 'rectRounded', padding: 18, font: { size: 11 } } }
+    }
+  }
+});
+
+// ─── 4. NEW VS RETURNING (with Jan 2026) ───
+new Chart(document.getElementById('chartNewReturn'), {
+  type: 'bar',
+  data: {
+    labels: mL13,
+    datasets: [
+      { label: 'Returning', data: [98131,82153,103629,111787,135228,137871,154523,157655,154289,165412,168604,153476,182000],
+        backgroundColor: [...Array(12).fill(sage), jan26], maxBarThickness: 28 },
+      { label: 'New', data: [54733,35667,76582,76532,109762,115584,92268,105697,96174,45893,56548,38630,112000],
+        backgroundColor: [...Array(12).fill(goldLight), gold], borderRadius: { topLeft:4, topRight:4 }, maxBarThickness: 28 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: {
+      y: { stacked: true, beginAtZero: true, grid: gridOpts, ticks: { callback: dollarK } },
+      x: { stacked: true, grid: noGrid }
+    },
+    plugins: {
+      legend: { display: true, position: 'top', align: 'end', labels: { usePointStyle: true, pointStyle: 'rectRounded', padding: 18, font: { size: 11 } } }
+    }
+  }
+});
+
+// ─── 5. CUSTOMER TIERS ───
+new Chart(document.getElementById('chartTiers'), {
+  type: 'bar',
+  data: {
+    labels: ['1 order\n(trial)','2–3 orders\n(light repeat)','4–6 orders\n(moderate)','7–12 orders\n(loyal)','13+ orders\n(power user)'],
+    datasets: [
+      { label: '% of Customers', data: [68.9,18.6,6.3,3.8,2.4], backgroundColor: grayLight, borderRadius: 4, maxBarThickness: 46 },
+      { label: '% of Revenue', data: [27.4,19.2,14.3,15.2,51.2], backgroundColor: sage, borderRadius: 4, maxBarThickness: 46 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: {
+      y: { beginAtZero: true, max: 75, grid: gridOpts, ticks: { callback: v => v+'%' } },
+      x: { grid: noGrid, ticks: { maxRotation: 0, font: { size: 10 } } }
+    },
+    plugins: {
+      legend: { display: true, position: 'top', align: 'end', labels: { usePointStyle: true, pointStyle: 'rectRounded', padding: 18, font: { size: 11 } } },
+      tooltip: { callbacks: { label: ctx => ctx.dataset.label+': '+ctx.parsed.y+'%' } }
+    }
+  }
+});
+
+// ─── 6. TIME TO 2ND PURCHASE ───
+new Chart(document.getElementById('chartTime2nd'), {
+  type: 'bar',
+  data: {
+    labels: ['< 1 wk','1–2 wks','2–4 wks','1–2 mo','2–3 mo','3–6 mo','6–12 mo','12+ mo'],
+    datasets: [
+      { label: 'Cumulative %', data: [3.9,19.3,44.1,70.6,82.1,93.0,98.4,100], type: 'line',
+        borderColor: sage, backgroundColor: 'transparent', borderWidth: 2.5,
+        pointRadius: 5, pointBackgroundColor: sage, pointBorderColor: 'white', pointBorderWidth: 2,
+        tension: 0.3, yAxisID: 'y1', order: 0 },
+      { label: '% of Repeat Customers', data: [3.9,15.4,24.8,26.5,11.4,10.9,5.5,1.6],
+        backgroundColor: goldPale, borderRadius: 4, maxBarThickness: 38, yAxisID: 'y', order: 1 }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: {
+      y: { beginAtZero: true, max: 30, grid: gridOpts, ticks: { callback: v => v+'%' } },
+      y1: { beginAtZero: true, max: 105, position: 'right', grid: noGrid, ticks: { callback: v => v+'%' },
+        title: { display: true, text: 'Cumulative', font: { size: 10 }, color: '#A09895' } },
+      x: { grid: noGrid }
+    },
+    plugins: {
+      legend: { display: true, position: 'top', align: 'end', labels: { usePointStyle: true, padding: 18, font: { size: 11 } } }
+    }
+  }
+});
+
+// ─── 7. COHORT LTV ───
+new Chart(document.getElementById('chartLTV'), {
+  type: 'bar',
+  data: {
+    labels: mL,
+    datasets: [{
+      data: [268,275,218,203,192,186,190,154,161,170,151,131],
+      backgroundColor: mL.map((m,i) => i<3 ? sage : i<6 ? sageMuted : i<9 ? goldLight : goldPale),
+      borderRadius: 6, maxBarThickness: 34
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: {
+      y: { beginAtZero: true, grid: gridOpts, ticks: { callback: v => '$'+v } },
+      x: { grid: noGrid }
+    }
+  }
+});
+
+// ─── 8. SUBSCRIBERS (with Jan 2026) ───
+new Chart(document.getElementById('chartSubs'), {
+  type: 'bar',
+  data: {
+    labels: mL13,
+    datasets: [
+      { type: 'bar', label: 'Active Subscribers',
+        data: [570,594,655,697,776,841,912,927,830,965,1003,993,1051],
+        backgroundColor: [...Array(12).fill(sage), jan26],
+        borderRadius: 4, maxBarThickness: 28, yAxisID: 'y' },
+      { type: 'line', label: 'Churn Rate',
+        data: [null,14.39,14.14,14.50,13.92,16.37,16.77,15.24,12.30,12.05,12.02,9.77,null],
+        borderColor: gold, backgroundColor: 'transparent', borderWidth: 2.5,
+        pointRadius: 4, pointBackgroundColor: gold, tension: 0.3, yAxisID: 'y1' }
+    ]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: {
+      y: { beginAtZero: true, position: 'left', grid: gridOpts,
+        title: { display: true, text: 'Subscribers', font: { size: 10 }, color: '#A09895' } },
+      y1: { beginAtZero: true, position: 'right', grid: noGrid, max: 20,
+        ticks: { callback: v => v+'%' },
+        title: { display: true, text: 'Churn %', font: { size: 10 }, color: '#A09895' } },
+      x: { grid: noGrid }
+    },
+    plugins: {
+      legend: { display: true, position: 'top', align: 'end', labels: { usePointStyle: true, padding: 18, font: { size: 11 } } }
+    }
+  }
+});
+
+// ─── 9. nCAC ───
+new Chart(document.getElementById('chartNCAC'), {
+  type: 'line',
+  data: {
+    labels: mL,
+    datasets: [{
+      data: [59,34,58,75,74,63,85,89,103,142,139,137],
+      borderColor: gold, backgroundColor: 'rgba(193,152,108,0.08)', fill: true,
+      borderWidth: 2.5, pointRadius: 5,
+      pointBackgroundColor: mL.map((m,i) => i<6 ? sage : gold),
+      pointBorderColor: 'white', pointBorderWidth: 2, tension: 0.3
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: {
+      y: { beginAtZero: true, grid: gridOpts, ticks: { callback: v => '$'+v } },
+      x: { grid: noGrid }
+    }
+  }
+});
+
+// ─── 10. WHOLESALE (with Jan 2026) ───
+new Chart(document.getElementById('chartWholesale'), {
+  type: 'bar',
+  data: {
+    labels: mL13,
+    datasets: [{
+      data: [51504,40690,26536,22559,52157,19055,24852,17885,37679,61784,19731,21592,135291],
+      backgroundColor: [...Array(12).fill(sageMuted), jan26],
+      borderRadius: 6, maxBarThickness: 36
+    }]
+  },
+  options: {
+    responsive: true, maintainAspectRatio: false,
+    scales: {
+      y: { beginAtZero: true, grid: gridOpts, ticks: { callback: dollarK } },
+      x: { grid: noGrid }
+    }
+  }
+});
+</script>
+
+</body>
+</html>
